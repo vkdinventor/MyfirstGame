@@ -46,11 +46,20 @@ public class BubbleView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        bubbleViewThread = new BubbleViewThread(surfaceHolder, positionListner);
+        bubbleViewThread = new BubbleViewThread(getContext(),surfaceHolder, positionListner);
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+        boolean retry = true;
+        bubbleViewThread.startGame(false);
+        while (retry) {
+            try {
+                bubbleViewThread.join();
+                retry = false;
+            } catch (InterruptedException e) {
+            }
+        }
 
     }
 

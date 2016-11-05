@@ -46,4 +46,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // just have the View's thread save its state into our Bundle
+        super.onSaveInstanceState(outState);
+        Log.w(this.getClass().getName(), "SIS called");
+    }
 }
