@@ -11,6 +11,7 @@
         android:id="@+id/game_view" />
     <Button
         android:id="@+id/startanim"
+        android:text="Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

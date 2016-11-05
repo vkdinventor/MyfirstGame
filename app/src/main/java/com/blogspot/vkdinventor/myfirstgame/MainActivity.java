@@ -6,9 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    Boolean start=false;
 
 
     @Override
@@ -16,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final TextView textView=(TextView)findViewById(R.id.text);
-        BubbleView bubbleView=(BubbleView)findViewById(R.id.game_view);
+        final BubbleView bubbleView=(BubbleView)findViewById(R.id.game_view);
+        final Button startBtn=(Button)findViewById(R.id.startanim);
         if (bubbleView != null) {
             bubbleView.setPositionListener(new OnPositionListner() {
                 @Override
@@ -31,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               bubbleView.startAnimation(start);
+                start=!start;
+            }
+        });
 
     }
 }

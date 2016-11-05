@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -53,7 +54,20 @@ public class BubbleView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
+    public void startAnimation(Boolean enable){
+        bubbleViewThread.startGame(enable);
+    }
+
     void setPositionListener(OnPositionListner m1) {
         positionListner = m1;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+         super.onTouchEvent(event);
+        int x=(int)event.getX();
+        int y=(int)event.getY();
+        bubbleViewThread.setCentre(x,y);
+        return true;
     }
 }
